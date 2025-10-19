@@ -2,7 +2,6 @@
 - or just use `digital ocean` or `aws EKS`, they will setup cluster for you
 - good luck!
 
-
 ### System Prerequisites
 
 - Disable swap
@@ -59,7 +58,7 @@ vim /etc/containerd/config.toml
 
 - [follow these steps](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl)
 
-> [!WARNING] Wait!
+> [!WARNING] Note
 > all those steps before, you need to do also for worker nodes
 
 ### init cluster
@@ -69,10 +68,6 @@ vim /etc/containerd/config.toml
 ```fish
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --skip-phases=addon/kube-proxy
 ```
-
-### Install helm
-
-- [follow these steps](https://helm.sh/docs/intro/install)
 
 ### Install cilium with helm
 
@@ -95,4 +90,4 @@ kubectl get pods -A
 - `Connection to 127.0.0.1 6443 port [tcp/*] succeeded!`
 - for second one everything should be in `Running` status
 
-![](./assets/k8s-setup-ok.png)
+![](./assets/cilium-status-ok.png)

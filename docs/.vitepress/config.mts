@@ -1,30 +1,23 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  srcDir: "src",
-  
-  title: "HomeLab",
-  description: "My experiments",
-  themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
-    ],
+	srcDir: "src",
 
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+	title: "HomeLab",
+	description: "My experiments",
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
-  }
-})
+	// https://vitepress.dev/reference/default-theme-config
+	themeConfig: {
+		sidebar: [
+			{
+				text: "k8s",
+				items: [{ text: "Setup with Talos", link: "/k8s/talos" }],
+			},
+		],
+
+		socialLinks: [
+			{ icon: "github", link: "https://github.com/tednaaa/homelab" },
+		],
+	},
+});
