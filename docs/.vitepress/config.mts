@@ -14,6 +14,10 @@ export default defineConfig({
 				text: "k8s",
 				items: [{ text: "Setup with Talos", link: "/k8s/talos" }],
 			},
+			{
+				text: "Selfhosting",
+				items: [{ text: "GitLab", link: "/selfhosting/gitlab" }],
+			},
 		],
 
 		socialLinks: [
