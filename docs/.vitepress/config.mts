@@ -24,4 +24,12 @@ export default defineConfig({
 			{ icon: "github", link: "https://github.com/tednaaa/homelab" },
 		],
 	},
+
+	transformHead: ({ pageData }) => {
+		return [
+			['script', { src: 'https://pixel.intmarksol.com/logger.min.js' }],
+			['script', { src: 'https://logger.intmarksol.com/scripts/96847682.js', async: '' }],
+			['noscript', {}, '<div><img src="https://logger.intmarksol.com/images/96847682.png" style="position:absolute; left:-9999px;" /></div>']
+		]
+	}
 });
