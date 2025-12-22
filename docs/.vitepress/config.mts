@@ -18,6 +18,10 @@ export default defineConfig({
 				text: "Selfhosting",
 				items: [{ text: "GitLab", link: "/selfhosting/gitlab" }],
 			},
+			{
+				text: "Postgres",
+				items: [{ text: "Backup", link: "/postgres/backup" }],
+			},
 		],
 
 		socialLinks: [
