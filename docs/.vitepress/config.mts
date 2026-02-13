@@ -15,6 +15,12 @@ export default defineConfig({
 				items: [{ text: "Setup with Talos", link: "/k8s/talos" }],
 			},
 			{
+				text: 'GitOps',
+				items: [
+					{ text: 'Flux', link: '/gitops/flux' }
+				]
+			},
+			{
 				text: "Selfhosting",
 				items: [{ text: "GitLab", link: "/selfhosting/gitlab" }],
 			},
