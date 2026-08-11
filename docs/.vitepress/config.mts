@@ -11,14 +11,8 @@ export default defineConfig({
 	themeConfig: {
 		sidebar: [
 			{
-				text: "k8s",
-				items: [{ text: "Setup with Talos", link: "/k8s/talos" }],
-			},
-			{
-				text: 'GitOps',
-				items: [
-					{ text: 'Flux', link: '/gitops/flux' }
-				]
+				text: "Security",
+				items: [{ text: "SSH key-only login", link: "/security/ssh" }],
 			},
 			{
 				text: "Selfhosting",
@@ -27,6 +21,16 @@ export default defineConfig({
 			{
 				text: "Postgres",
 				items: [{ text: "Backup", link: "/postgres/backup" }],
+			},
+			{
+				text: "k8s",
+				items: [{ text: "Setup with Talos", link: "/k8s/talos" }],
+			},
+			{
+				text: 'GitOps',
+				items: [
+					{ text: 'Flux', link: '/gitops/flux' }
+				]
 			},
 		],
 
