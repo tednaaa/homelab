@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}:
+{ pkgs, ... }:
 {
   languages = {
     javascript = {
