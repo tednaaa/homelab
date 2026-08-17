@@ -12,7 +12,10 @@ export default defineConfig({
 		sidebar: [
 			{
 				text: "Security",
-				items: [{ text: "SSH key-only login", link: "/security/ssh" }],
+				items: [
+					{ text: "SSH key-only login", link: "/security/ssh" },
+					{ text: "Pentest", link: "/security/pentest" }
+				],
 			},
 			{
 				text: "Selfhosting",
