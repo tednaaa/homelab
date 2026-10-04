@@ -1,19 +1,28 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
   name: "HomeLab"
   text: "Experiments"
-  actions:
-    - theme: brand
-      text: Setup with Talos
-      link: /k8s/talos
-# features:
-#   - title: Feature A
-#     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-#   - title: Feature B
-#     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-#   - title: Feature C
-#     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  tagline: Notes on selfhosting, security and Kubernetes
+
+features:
+  - title: Selfhosting
+    details: GitLab on a dedicated VPS, Vaultwarden for team secrets
+    link: /selfhosting/gitlab
+  - title: Workflow
+    details: Groups, planning and QA flows in GitLab Free
+    link: /workflow/gitlab
+  - title: Security
+    details: SSH key-only login, pentest tooling
+    link: /security/ssh
+  - title: Postgres
+    details: Dumps and restores
+    link: /postgres/backup
+  - title: k8s
+    details: Cluster setup, Talos
+    link: /k8s/talos
+  - title: GitOps
+    details: Flux with GitLab
+    link: /gitops/flux/
 ---
