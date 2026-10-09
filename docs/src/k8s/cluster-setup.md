@@ -90,4 +90,4 @@ kubectl get pods -A
 - `Connection to 127.0.0.1 6443 port [tcp/*] succeeded!`
 - for second one everything should be in `Running` status
 
-![](./assets/cilium-status-ok.png)
+![Cilium status with every component OK](./assets/cilium-status-ok.png)

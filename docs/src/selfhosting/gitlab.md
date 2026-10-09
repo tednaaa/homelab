@@ -6,13 +6,13 @@ Written for Ubuntu 24.04 LTS.
 
 Deploy GitLab on its own VPS, not next to production apps - its upgrades and memory spikes should not take production down, and CI runners execute arbitrary code.
 
-##### Baseline from [installation requirements](https://docs.gitlab.com/install/requirements/):
+> Baseline from [installation requirements](https://docs.gitlab.com/install/requirements/):
 
 - 8 vCPU
 - 16 GB RAM
 - ~40 GB for the application, plus repositories and 5-12 GB for PostgreSQL
 
-##### Handles ~1000 users, per the [1K reference architecture](https://docs.gitlab.com/administration/reference_architectures/1k_users/) peak load:
+> Handles ~1000 users, per the [1K reference architecture](https://docs.gitlab.com/administration/reference_architectures/1k_users/) peak load:
 
 - API: 20 RPS
 - Web: 2 RPS

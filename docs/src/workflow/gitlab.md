@@ -98,62 +98,62 @@ Saved filters on `Work items` of the root group, one tab each.
 
 All views filter `State = Open`.
 
-#### Current sprint
+### Current sprint
 
 - `Milestone = %Started`
 
-#### Backlog
+### Backlog
 
 - `Milestone = None`
 
-#### Unassigned
+### Unassigned
 
 - `Milestone = %Started`
 - `Assignee = None`
 
-#### Not started
+### Not started
 
 - `Milestone = %Started`
 - `Label != status: in progress`, `status: blocked`, `status: in review`, `status: passed review`, `status: in staging`, `status: ready to release`
 
-#### In progress
+### In progress
 
 - `Milestone = %Started`
 - `Label = status: in progress`
 
-#### Blocked
+### Blocked
 
 - `Milestone = %Started`
 - `Label = status: blocked`
 
-#### Waiting for review
+### Waiting for review
 
 - `Milestone = %Started`
 - `Label = status: in review`
 
-#### Waiting for merge
+### Waiting for merge
 
 - `Milestone = %Started`
 - `Label = status: passed review`
 
-#### Waiting for QA
+### Waiting for QA
 
 - `Milestone = %Started`
 - `Label = status: in staging`
 
-#### Ready to release
+### Ready to release
 
 - `Label = status: ready to release`
 
-#### Next sprint
+### Next sprint
 
 - `Milestone = %Upcoming`
 
-#### Bugs
+### Bugs
 
 - `Label = type: bug`
 
-##### Sets by role:
+> Sets by role:
 
 - PM - current sprint, backlog, unassigned, blocked, ready to release
 - developer - current sprint, in progress, blocked, waiting for review, waiting for merge
@@ -240,7 +240,7 @@ Every merge request gets its own temporary stand, QA tests before the merge, `ma
 
 A bug found on the review app is fixed in the same branch. A regression found on staging is a new merge request and the next `rc` tag.
 
-##### Needs:
+> Needs:
 
 - a runner
 - a Docker host or k8s cluster for the stands
