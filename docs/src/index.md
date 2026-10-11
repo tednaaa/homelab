@@ -10,9 +10,9 @@ features:
   - title: Infrastructure
     details: Which server each service lives on and why
     link: /infrastructure/
-  - title: Selfhosting
-    details: GitLab on a dedicated VPS, Vaultwarden for team secrets
-    link: /selfhosting/gitlab
+  - title: Servers
+    details: Vaultwarden on the tools server, GitLab on its own server
+    link: /servers/tools/vaultwarden
   - title: Workflow
     details: Groups, planning and QA flows in GitLab Free
     link: /workflow/gitlab

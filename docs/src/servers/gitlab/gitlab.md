@@ -23,7 +23,7 @@ Deploy GitLab on its own VPS, not next to production apps - its upgrades and mem
 
 ### Base setup
 
-Set up the VPS as a [new server](../infrastructure/new-server.md).
+Set up the VPS as a [new server](../../infrastructure/new-server.md).
 
 > git over SSH goes through the host's `sshd` - keep it on port 22 instead of moving the port
 
@@ -43,7 +43,7 @@ Follow the [Linux package for Ubuntu](https://docs.gitlab.com/install/package/ub
 - Premium later is just a license key, no package switch
 
 > [!NOTE]
-> if you get cert issues refer to [Let's Encrypt](../certificates/lets-encrypt.md)
+> if you get cert issues refer to [Let's Encrypt](../../certificates/lets-encrypt.md)
 
 Then make sure `/etc/gitlab/gitlab.rb` has both - a failed first install leaves a self-signed cert and stops requesting a real one:
 
@@ -77,7 +77,7 @@ sudo apt-mark hold gitlab-ee
 
 ### Save secrets
 
-GitLab backups do not include `/etc/gitlab/gitlab-secrets.json` - without it a restore loses CI variables, tokens and 2FA. Save it to a password manager, for example [Vaultwarden](./vaultwarden.md).
+GitLab backups do not include `/etc/gitlab/gitlab-secrets.json` - without it a restore loses CI variables, tokens and 2FA. Save it to a password manager, for example [Vaultwarden](../tools/vaultwarden.md).
 
 ```fish
 sudo cat /etc/gitlab/gitlab-secrets.json
@@ -146,7 +146,7 @@ Wait until `Admin` → `Monitoring` → `Background migrations` is empty before 
 
 ## Backup
 
-On top of [provider VPS backups](../infrastructure/new-server.md#provider-vps-backups), nearly zero effort.
+On top of [provider VPS backups](../../infrastructure/new-server.md#provider-vps-backups), nearly zero effort.
 
 ### S3
 

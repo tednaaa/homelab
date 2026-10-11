@@ -6,13 +6,13 @@ Servers are split by failure domain: what goes down together, and what is needed
 
 ### GitLab
 
-- own VPS - see [Selfhost GitLab](../selfhosting/gitlab.md)
+- own VPS - see [GitLab](../servers/gitlab/gitlab.md)
 - 16 GB RAM and heavy upgrades would starve neighbours
 - CI runners execute arbitrary code
 
 ### Tools
 
-- Vaultwarden, Uptime Kuma and similar small services
+- [Vaultwarden](../servers/tools/vaultwarden.md), Uptime Kuma and similar small services
 - 1 vCPU and 2 GB RAM are enough
 - at another provider than GitLab, staging and production
 

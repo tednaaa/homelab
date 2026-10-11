@@ -10,7 +10,7 @@ Written for Ubuntu 24.04 LTS.
 
 ## Server
 
-Deploy it on the tools server - see [Infrastructure](../infrastructure/index.md).
+Deploy it on the tools server - see [Infrastructure](../../infrastructure/index.md).
 
 - 1 vCPU and 2 GB RAM
 - at another provider than GitLab, staging and production
@@ -21,7 +21,7 @@ Deploy it on the tools server - see [Infrastructure](../infrastructure/index.md)
 
 ### Base setup
 
-Set up the VPS as a [new server](../infrastructure/new-server.md).
+Set up the VPS as a [new server](../../infrastructure/new-server.md).
 
 ### Firewall
 
@@ -85,7 +85,7 @@ vault.example.com {
 ```
 
 > [!NOTE]
-> start only once `dig` returns the VPS IP - see [Let's Encrypt](../certificates/lets-encrypt.md)
+> start only once `dig` returns the VPS IP - see [Let's Encrypt](../../certificates/lets-encrypt.md)
 
 ```fish
 sudo docker compose up -d
@@ -142,7 +142,7 @@ sudo docker compose up -d
 
 ## Backup
 
-On top of [provider VPS backups](../infrastructure/new-server.md#provider-vps-backups).
+On top of [provider VPS backups](../../infrastructure/new-server.md#provider-vps-backups).
 
 ### Off-site
 

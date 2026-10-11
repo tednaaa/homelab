@@ -1,6 +1,6 @@
 # GitLab workflow
 
-How a team plans and ships in GitLab Free. Server setup is in [Selfhost GitLab](../selfhosting/gitlab.md).
+How a team plans and ships in GitLab Free. Server setup is in [Selfhost GitLab](../servers/gitlab/gitlab.md).
 
 ## Groups
 

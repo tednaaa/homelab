@@ -25,11 +25,12 @@ export default defineConfig({
 				],
 			},
 			{
-				text: 'Selfhosting',
-				items: [
-					{ text: 'GitLab', link: '/selfhosting/gitlab' },
-					{ text: 'Vaultwarden', link: '/selfhosting/vaultwarden' },
-				],
+				text: 'Tools server',
+				items: [{ text: 'Vaultwarden', link: '/servers/tools/vaultwarden' }],
+			},
+			{
+				text: 'GitLab server',
+				items: [{ text: 'GitLab', link: '/servers/gitlab/gitlab' }],
 			},
 			{
 				text: 'Workflow',
