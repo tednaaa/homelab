@@ -23,6 +23,12 @@ Deploy it on the tools server - see [Infrastructure](../infrastructure/index.md)
 
 Set up the VPS as a [new server](../infrastructure/new-server.md).
 
+### Firewall
+
+Allow only `22`, `80` and `443` in the provider's cloud firewall, not in `ufw`.
+
+> ports published by Docker bypass `ufw` - Docker writes its own iptables rules, so a closed `ufw` port stays open
+
 ### Docker
 
 Follow [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) - not the `docker.io` package from Ubuntu repositories.

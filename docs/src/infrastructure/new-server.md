@@ -27,12 +27,6 @@ Keep bash as the login shell - `ssh host 'cmd'`, `rsync` and `scp` expect POSIX.
 printf '\n\n[[ $- == *i* && -z $FISH_STARTED ]] && FISH_STARTED=1 exec fish' >> ~/.bashrc
 ```
 
-## Firewall
-
-Allow only the ports the service needs, usually `22`, `80` and `443`, in the provider's cloud firewall, not in `ufw`.
-
-> ports published by Docker bypass `ufw` - Docker writes its own iptables rules, so a closed `ufw` port stays open
-
 ## Provider VPS backups
 
 - one checkbox in the provider panel, usually +20% of the VPS price

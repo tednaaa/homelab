@@ -27,6 +27,14 @@ Set up the VPS as a [new server](../infrastructure/new-server.md).
 
 > git over SSH goes through the host's `sshd` - keep it on port 22 instead of moving the port
 
+### Firewall
+
+Allow only `22`, `80` and `443` in the provider's cloud firewall.
+
+- `22` - SSH and git over SSH
+- `80` - Let's Encrypt HTTP challenge and redirect to HTTPS
+- `443` - web UI and git over HTTPS
+
 ### GitLab
 
 Follow the [Linux package for Ubuntu](https://docs.gitlab.com/install/package/ubuntu/) guide and pick the `Enterprise Edition` tab.
