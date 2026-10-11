@@ -77,11 +77,20 @@ sudo apt-mark hold gitlab-ee
 
 ### Save secrets
 
-GitLab backups do not include `/etc/gitlab/gitlab-secrets.json` - without it a restore loses CI variables, tokens and 2FA. Save it to a password manager, for example [Vaultwarden](../tools/vaultwarden.md).
+GitLab backups include neither file in `/etc/gitlab`:
+
+- `gitlab-secrets.json` - without it a restore loses CI variables, tokens and 2FA
+- `gitlab.rb` - the whole configuration, with S3 and SMTP credentials in it
+
+Copy them to your machine:
 
 ```fish
-sudo cat /etc/gitlab/gitlab-secrets.json
+scp root@<gitlab_host>:/etc/gitlab/{gitlab-secrets.json,gitlab.rb} .
 ```
+
+Attach both to a note in the `gitlab` collection in [Vaultwarden](../tools/vaultwarden.md#files), then delete the local copies.
+
+> save `gitlab.rb` again after every edit
 
 ## Configure
 
@@ -143,6 +152,9 @@ Wait until `Admin` → `Monitoring` → `Background migrations` is empty before 
 
 > [!IMPORTANT]
 > New versions add keys to `/etc/gitlab/gitlab-secrets.json` - [save it](#save-secrets) to the password manager again once the last stop is done, not after every stop
+
+> [!NOTE]
+> upgrades never touch `/etc/gitlab/gitlab.rb` - new options land in `gitlab.rb.template` only, `sudo gitlab-ctl diff-config` shows them. Save `gitlab.rb` again only after editing it
 
 ## Backup
 

@@ -26,7 +26,10 @@ export default defineConfig({
 			},
 			{
 				text: 'Tools server',
-				items: [{ text: 'Vaultwarden', link: '/servers/tools/vaultwarden' }],
+				items: [
+					{ text: 'Setup', link: '/servers/tools/' },
+					{ text: 'Vaultwarden', link: '/servers/tools/vaultwarden' },
+				],
 			},
 			{
 				text: 'GitLab server',

@@ -4,3 +4,8 @@ docs/.vitepress/dist
 docs/.vitepress/cache
 
 .devenv
+
+servers/**/.env
+servers/**/*.env
+servers/**/data
+servers/**/config

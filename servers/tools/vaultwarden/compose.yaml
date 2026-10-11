@@ -1,0 +1,13 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:1.37.4
+    container_name: vaultwarden
+    restart: unless-stopped
+    env_file:
+      - path: ./admin.env
+        required: false
+    environment:
+      DOMAIN: https://${VAULTWARDEN_DOMAIN:?}
+      SIGNUPS_ALLOWED: ${VAULTWARDEN_SIGNUPS_ALLOWED:?}
+    volumes:
+      - ./data:/data

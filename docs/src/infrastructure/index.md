@@ -12,7 +12,7 @@ Servers are split by failure domain: what goes down together, and what is needed
 
 ### Tools
 
-- [Vaultwarden](../servers/tools/vaultwarden.md), Uptime Kuma and similar small services
+- Vaultwarden, Uptime Kuma and similar small services - see [Tools server](../servers/tools/index.md)
 - 1 vCPU and 2 GB RAM are enough
 - at another provider than GitLab, staging and production
 

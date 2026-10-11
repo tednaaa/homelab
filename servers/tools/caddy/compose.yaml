@@ -1,0 +1,14 @@
+services:
+  caddy:
+    image: caddy:2.11.7
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      VAULTWARDEN_DOMAIN: ${VAULTWARDEN_DOMAIN:?}
+    volumes:
+      - ./conf:/etc/caddy:ro
+      - ./data:/data
+      - ./config:/config
