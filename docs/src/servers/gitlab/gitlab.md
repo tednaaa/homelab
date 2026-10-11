@@ -29,11 +29,22 @@ Set up the VPS as a [new server](../../infrastructure/new-server.md).
 
 ### Firewall
 
-Allow only `22`, `80` and `443` in the provider's cloud firewall.
+Create a cloud firewall named `gitlab` in the provider panel - by role, not by ports, since the rules change with the server.
 
-- `22` - SSH and git over SSH
-- `80` - Let's Encrypt HTTP challenge and redirect to HTTPS
-- `443` - web UI and git over HTTPS
+#### Inbound
+
+<FirewallRules
+  direction="inbound"
+  :rules="[
+    { description: 'SSH and git over SSH', protocol: 'TCP', port: 22 },
+    { description: 'Certificate challenge and redirect to HTTPS', protocol: 'TCP', port: 80 },
+    { description: 'Web UI and git over HTTPS', protocol: 'TCP', port: 443 },
+  ]"
+/>
+
+#### Apply to
+
+- tag `gitlab`, then put the tag on the VPS - a rebuilt VPS gets the firewall back with the tag
 
 ### GitLab
 
