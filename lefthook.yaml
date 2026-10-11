@@ -1,0 +1,6 @@
+pre-commit:
+  commands:
+    lint:
+      glob: '*.{js,ts,mts,vue,json,yaml,md}'
+      run: pnpm exec eslint --fix --no-warn-ignored {staged_files}
+      stage_fixed: true
