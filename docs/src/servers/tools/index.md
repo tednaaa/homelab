@@ -108,7 +108,8 @@ One reverse proxy for every service - it owns ports `80` and `443` and gets a Le
 3. add its domain block to `caddy/conf/Caddyfile` and pass the domain variable to Caddy →
 4. add its variables to `.env.example` and the server's `.env` →
 5. list its page in [Environment](#environment) and [Services](#services) →
-6. [update](#update) the server
+6. add its pre-backup step to `backup.sh` and its restore steps to [Backup](./backup.md#restore), if its data needs them →
+7. [update](#update) the server
 
 ## Services
 

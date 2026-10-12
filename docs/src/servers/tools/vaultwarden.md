@@ -86,26 +86,31 @@ sudo docker exec vaultwarden /vaultwarden backup
 
 ## Backup
 
-On top of [provider VPS backups](../../infrastructure/new-server.md#provider-vps-backups).
-
-### Off-site
-
-Everything lives in `/opt/homelab/servers/tools/vaultwarden/data`:
+On top of [provider VPS backups](../../infrastructure/new-server.md#provider-vps-backups), the [tools server backup](./backup.md) snapshots `/opt/homelab/servers/tools/vaultwarden/data` every night:
 
 - `db.sqlite3` - the vault itself
 - `attachments` and `sends` - files
 - `rsa_key*` - token signing keys, without them every client is logged out
 - `config.json` - admin page settings, exists only once the admin page was used
 
-`cp` of a live `db.sqlite3` can catch it mid-write. `/vaultwarden backup` writes a consistent copy next to it as `db_<date>.sqlite3`:
+A live `db.sqlite3` can be caught mid-write, so the snapshot skips it. `backup.sh` runs `/vaultwarden backup` first - it writes a consistent copy next to it as `db_<date>.sqlite3`.
+
+### Restore
+
+In `/opt/homelab/servers/tools`. On a running server, stop Vaultwarden and move its `data` aside first:
 
 ```fish
-sudo docker exec vaultwarden /vaultwarden backup
+sudo docker compose stop vaultwarden
+sudo mv vaultwarden/data /root/vaultwarden-data-old
+sudo ./restic.sh restore latest --target / --include /opt/homelab/servers/tools/vaultwarden/data
 ```
 
-Copy the whole `data` directory to S3 at another provider on a schedule.
+Turn the copy back into the database, then start:
 
-> the off-site storage credentials and the backup encryption password must not live only in this Vaultwarden - keep a printed copy or a second password manager
+```fish
+sudo mv vaultwarden/data/db_*.sqlite3 vaultwarden/data/db.sqlite3
+sudo docker compose up -d
+```
 
 ### Export
 

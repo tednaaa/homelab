@@ -28,6 +28,7 @@ export default defineConfig({
 				text: 'Tools server',
 				items: [
 					{ text: 'Setup', link: '/servers/tools/' },
+					{ text: 'Backup', link: '/servers/tools/backup' },
 					{ text: 'Vaultwarden', link: '/servers/tools/vaultwarden' },
 				],
 			},
