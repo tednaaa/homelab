@@ -204,6 +204,61 @@ sudo crontab -e
 - drop `endpoint` and `path_style` for AWS S3 itself
 - `backup_keep_time` prunes local archives only - set a lifecycle rule on the bucket for remote retention
 
+### Restore
+
+The restore needs GitLab of exactly the version in the backup name - `<backup_id>` like `1739000000_2026_10_12_19.2.3-ee` needs `19.2.3-ee`, otherwise it stops with `GitLab version mismatch`.
+
+1. set up the server as in [Install](#install), but install the version from the backup name →
+
+   ```fish
+   sudo apt install gitlab-ee=19.2.3-ee.0
+   sudo apt-mark hold gitlab-ee
+   ```
+
+2. put `gitlab-secrets.json` and `gitlab.rb` from [Vaultwarden](#save-secrets) into `/etc/gitlab` →
+
+   ```fish
+   sudo gitlab-ctl reconfigure
+   ```
+
+3. download the backup from S3 →
+
+   ```fish
+   sudo apt install rclone
+   set -x AWS_ACCESS_KEY_ID <access_key>
+   set -x AWS_SECRET_ACCESS_KEY <secret_key>
+   rclone lsf :s3,env_auth=true,provider=Other,endpoint=<s3_endpoint>:<bucket>
+   rclone copy :s3,env_auth=true,provider=Other,endpoint=<s3_endpoint>:<bucket>/<backup_id>_gitlab_backup.tar .
+   sudo cp <backup_id>_gitlab_backup.tar /var/opt/gitlab/backups/
+   sudo chown git:git /var/opt/gitlab/backups/<backup_id>_gitlab_backup.tar
+   ```
+
+4. stop the processes connected to the database →
+
+   ```fish
+   sudo gitlab-ctl stop puma
+   sudo gitlab-ctl stop sidekiq
+   ```
+
+5. restore - it overwrites the database →
+
+   ```fish
+   sudo gitlab-backup restore BACKUP=<backup_id>
+   ```
+
+6. start and check that the database decrypts with the restored secrets
+
+   ```fish
+   sudo gitlab-ctl reconfigure
+   sudo gitlab-ctl start
+   sudo gitlab-rake gitlab:check SANITIZE=true
+   sudo gitlab-rake gitlab:doctor:secrets
+   ```
+
+Then [upgrade](#upgrade) to the current version through the stops.
+
+> restoring to another domain disables WebAuthn devices like YubiKeys - every user registers them again
+
 ## Premium and Ultimate
 
 What Free lacks, most critical first. Premium is $29 per user per month, Ultimate is priced on request. Both are a license key on the same `gitlab-ee` package.
