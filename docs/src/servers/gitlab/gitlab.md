@@ -4,7 +4,7 @@ Written for Ubuntu 24.04 LTS.
 
 ## Server
 
-Deploy GitLab on its own VPS, not next to production apps - its upgrades and memory spikes should not take production down, and CI runners execute arbitrary code.
+Deploy GitLab on its own VPS, not next to production apps - its upgrades and memory spikes should not take production down, and CI runners execute arbitrary code, so they get [their own server](../runners/index.md).
 
 > Baseline from [installation requirements](https://docs.gitlab.com/install/requirements/):
 

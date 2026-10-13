@@ -37,6 +37,10 @@ export default defineConfig({
 				items: [{ text: 'GitLab', link: '/servers/gitlab/gitlab' }],
 			},
 			{
+				text: 'Runners server',
+				items: [{ text: 'Setup', link: '/servers/runners/' }],
+			},
+			{
 				text: 'Workflow',
 				items: [{ text: 'GitLab', link: '/workflow/gitlab' }],
 			},

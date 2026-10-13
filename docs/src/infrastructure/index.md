@@ -10,6 +10,12 @@ Servers are split by failure domain: what goes down together, and what is needed
 - 16 GB RAM and heavy upgrades would starve neighbours
 - CI runners execute arbitrary code
 
+### Runners
+
+- GitLab CI jobs, 3 at once - see [Runners server](../servers/runners/index.md)
+- 4 vCPU and 8 GB RAM
+- no inbound ports but SSH, it only connects out to GitLab
+
 ### Tools
 
 - Vaultwarden, Uptime Kuma and similar small services - see [Tools server](../servers/tools/index.md)
