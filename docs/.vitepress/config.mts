@@ -57,6 +57,10 @@ export default defineConfig({
 				items: [{ text: 'Let\'s Encrypt', link: '/certificates/lets-encrypt' }],
 			},
 			{
+				text: 'Email',
+				items: [{ text: 'Resend', link: '/email/resend' }],
+			},
+			{
 				text: 'Postgres',
 				items: [{ text: 'Backup', link: '/postgres/backup' }],
 			},

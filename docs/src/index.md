@@ -19,6 +19,9 @@ features:
   - title: Security
     details: SSH key-only login, pentest tooling
     link: /security/ssh
+  - title: Email
+    details: Sending app emails through Resend without landing in spam
+    link: /email/resend
   - title: Postgres
     details: Dumps and restores
     link: /postgres/backup
