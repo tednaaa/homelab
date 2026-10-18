@@ -67,7 +67,21 @@ One instance runner serves every project, see [Instance runners](https://docs.gi
 The next page shows the `glrt-` token only until registration - [register](https://docs.gitlab.com/runner/register/) with the Docker executor right away:
 
 ```fish
-sudo gitlab-runner register --non-interactive --url https://<gitlab_host> --token <glrt_token> --executor docker --docker-image alpine:latest
+sudo gitlab-runner register --non-interactive \
+  --url https://<gitlab_host> \
+  --token <glrt_token> \
+  --executor docker \
+  --docker-image docker:28 \
+  --docker-privileged \
+  --docker-volumes /certs/client \
+  --docker-volumes /cache
+```
+
+Check the runner is up and GitLab accepts its token:
+
+```fish
+sudo gitlab-runner status
+sudo gitlab-runner verify
 ```
 
 ## Concurrent jobs
@@ -86,7 +100,7 @@ concurrent = 3
 
 ## Docker builds
 
-`docker build` inside a job needs [Docker-in-Docker](https://docs.gitlab.com/ci/docker/using_docker_build/#use-docker-in-docker) with `privileged = true` under `[runners.docker]`, or [socket binding](https://docs.gitlab.com/ci/docker/using_docker_build/#use-docker-socket-binding).
+`docker build` inside a job needs [Docker-in-Docker](https://docs.gitlab.com/ci/docker/using_docker_build/#use-docker-in-docker) - `--docker-privileged` sets `privileged = true` under `[runners.docker]`, `/certs/client` shares the TLS certs of the `docker:dind` service. The alternative is [socket binding](https://docs.gitlab.com/ci/docker/using_docker_build/#use-docker-socket-binding).
 
 > [!WARNING]
 > both give a job root on the VPS - one more reason it holds no secrets but the runner token
