@@ -1,0 +1,30 @@
+---
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: frontend
+  namespace: frontend
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+
+  service:
+    port: 80
+    targetPort: 80
+
+  ingressRef:
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    name: frontend
+
+  analysis:
+    interval: 30s # Check every 30 seconds
+    threshold: 5 # Max failed checks before rollback
+    maxWeight: 50 # Max 50% traffic to canary
+    stepWeight: 10 # Increase by 10% each step
+
+    # Progressive traffic shift:
+    # 0% -> 10% -> 20% -> 30% -> 40% -> 50% -> 100%
+    # Total time: ~3.5 minutes if all checks pass

@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  chart:
+    spec:
+      version: '>=1.0.0'
+  values:
+    replicaCount: 3
+    ingress:
+      hosts:
+        - host: podinfo.example.com
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      tls:
+        - secretName: podinfo-tls
+          hosts:
+            - podinfo.example.com

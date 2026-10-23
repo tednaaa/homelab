@@ -1,0 +1,11 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: frontend
+  namespace: flux-system
+spec:
+  image: registry.gitlab.com/owner/repo/frontend
+  interval: 1m
+  secretRef:
+    name: docker-registry
