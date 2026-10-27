@@ -96,8 +96,12 @@ GitLab backups include neither file in `/etc/gitlab`:
 Copy them to your machine:
 
 ```fish
-scp root@<gitlab_host>:/etc/gitlab/{gitlab-secrets.json,gitlab.rb} .
+ssh -t <user>@<gitlab_host> 'sudo install -m 600 -o $USER /etc/gitlab/gitlab-secrets.json /etc/gitlab/gitlab.rb ~'
+scp <user>@<gitlab_host>:{gitlab-secrets.json,gitlab.rb} .
+ssh <user>@<gitlab_host> 'rm ~/gitlab-secrets.json ~/gitlab.rb'
 ```
+
+Both files are root-only, so `sudo` copies them to the home directory first.
 
 Attach both to a note in the `gitlab` collection in [Vaultwarden](../tools/vaultwarden.md#files), then delete the local copies.
 

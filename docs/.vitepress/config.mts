@@ -48,7 +48,7 @@ export default defineConfig({
 				text: 'Security',
 				items: [
 					{ text: 'Overview', link: '/security/' },
-					{ text: 'SSH key-only login', link: '/security/ssh' },
+					{ text: 'SSH hardening', link: '/security/ssh' },
 					{ text: 'Pentest', link: '/security/pentest' },
 				],
 			},

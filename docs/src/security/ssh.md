@@ -1,6 +1,8 @@
-# SSH key-only login
+# SSH hardening
 
 Ubuntu ships with `PasswordAuthentication yes`. Bots brute-force port 22 non-stop, and any user created later with `adduser` becomes password-reachable from the internet immediately.
+
+Root login goes too. Everyone works as their own user through `sudo`, so a leaked key alone does not give root, and `auth.log` shows who did what.
 
 ## Check current state
 
@@ -9,6 +11,26 @@ sudo sshd -T | grep -Ei 'passwordauthentication|kbdinteractive|pubkeyauthenticat
 ```
 
 `sshd -T` resolves all `Include` drop-ins and prints what sshd actually runs with. Grepping `/etc/ssh/sshd_config` alone is misleading - most lines there are commented examples showing the default, not settings.
+
+## Admin user
+
+Create it before turning root login off, while the root session still works:
+
+```fish
+sudo adduser <user>
+sudo usermod -aG sudo <user>
+sudo install -d -m 700 -o <user> -g <user> /home/<user>/.ssh
+sudo install -m 600 -o <user> -g <user> /root/.ssh/authorized_keys /home/<user>/.ssh/
+```
+
+The password `adduser` asks for is only for `sudo` - SSH never accepts it.
+
+From your laptop, in a NEW terminal, confirm the key and `sudo` both work:
+
+```fish
+ssh <user>@your.server.ip
+sudo -v
+```
 
 ## Apply
 
@@ -22,7 +44,7 @@ sudo vim /etc/ssh/sshd_config.d/10-hardening.conf
 PasswordAuthentication no
 KbdInteractiveAuthentication no
 PubkeyAuthentication yes
-PermitRootLogin prohibit-password
+PermitRootLogin no
 ```
 
 `KbdInteractiveAuthentication` is the one people miss - with `UsePAM yes` it lets PAM prompt for a password even when `PasswordAuthentication no`.
@@ -42,11 +64,14 @@ sudo sshd -T | grep -Ei 'passwordauthentication|kbdinteractive|permitrootlogin'
 From your laptop, in a NEW terminal:
 
 ```fish
-ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no root@your.server.ip
+ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no <user>@your.server.ip
+# expected: Permission denied (publickey).
+
+ssh root@your.server.ip
 # expected: Permission denied (publickey).
 ```
 
-No password prompt means it worked. Open one normal `ssh` session to confirm the key still works before closing the original.
+No password prompt and no root shell means it worked. Open one normal `ssh <user>@your.server.ip` session to confirm the key still works before closing the original.
 
 ## Audit
 
@@ -66,7 +91,7 @@ Did anyone get in:
 sudo grep -h 'Accepted' /var/log/auth.log; sudo zgrep -h 'Accepted' /var/log/auth.log.*.gz
 ```
 
-Every line should be `Accepted publickey` from an IP you recognize. Any `Accepted password` needs investigating.
+Every line should be `Accepted publickey` for your user, never `root`, from an IP you recognize. Any `Accepted password` needs investigating.
 
 Accounts with a usable password (`L` = locked, nothing can match it):
 
@@ -79,7 +104,7 @@ Persistence and payload checks:
 
 ```fish
 # only keys you recognize
-sudo cat /root/.ssh/authorized_keys
+cat ~/.ssh/authorized_keys
 
 # only 22/80/443
 sudo ss -tulpn | grep -v '127.0.0.1\|::1'
