@@ -23,7 +23,7 @@ sudo install -d -m 700 -o <user> -g <user> /home/<user>/.ssh
 sudo install -m 600 -o <user> -g <user> /root/.ssh/authorized_keys /home/<user>/.ssh/
 ```
 
-The password `adduser` asks for is only for `sudo` - SSH never accepts it.
+The password `adduser` asks for is only for `sudo` - SSH never accepts it. Everyone else gets their own account - see [Users](users.md).
 
 From your laptop, in a NEW terminal, confirm the key and `sudo` both work:
 

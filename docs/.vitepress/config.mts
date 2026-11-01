@@ -49,6 +49,7 @@ export default defineConfig({
 				items: [
 					{ text: 'Overview', link: '/security/' },
 					{ text: 'SSH hardening', link: '/security/ssh' },
+					{ text: 'Users', link: '/security/users' },
 					{ text: 'Pentest', link: '/security/pentest' },
 				],
 			},
