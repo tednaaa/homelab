@@ -10,7 +10,7 @@ Before anything on the VPS, create an `A` record for the service domain pointing
 
 ## SSH
 
-[Create an admin user, disable password and root login](../security/ssh.md). Then an account for [every other person](../security/users.md).
+[Create an admin user, disable password and root login, set up fail2ban](../security/ssh.md). Then an account for [every other person](../security/users.md).
 
 ## System packages
 

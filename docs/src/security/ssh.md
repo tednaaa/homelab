@@ -118,6 +118,40 @@ last -20
 
 If any of those come back dirty, rebuild the box rather than cleaning it - a compromised host cannot be trusted to report on itself.
 
+## fail2ban
+
+With key-only login there is no password to guess, so fail2ban adds little protection to SSH. It bans bots after a few attempts, which keeps `auth.log` readable and the real events visible.
+
+```fish
+sudo apt install fail2ban python3-systemd
+sudo vim /etc/fail2ban/jail.d/sshd.local
+```
+
+```
+[sshd]
+enabled = true
+backend = systemd
+maxretry = 5
+bantime = 1h
+bantime.increment = true
+ignoreip = 127.0.0.1/8 ::1 <your_ip>
+```
+
+`bantime.increment` doubles the ban for every repeat offender. `ignoreip` keeps you reachable when your key fails to load.
+
+```fish
+sudo systemctl restart fail2ban
+sudo fail2ban-client status sshd
+```
+
+Unban an IP:
+
+```fish
+sudo fail2ban-client set sshd unbanip <ip>
+```
+
+> allowing port 22 only from known IPs in the provider firewall is stronger - bots never reach sshd - but then a new IP needs a VPN or a bastion
+
 ## Note on hourly pubkey failures
 
 ```
