@@ -62,6 +62,10 @@ export default defineConfig({
 				items: [{ text: 'Resend', link: '/email/resend' }],
 			},
 			{
+				text: 'Docker',
+				items: [{ text: 'Layer cache', link: '/docker/layer-cache' }],
+			},
+			{
 				text: 'Postgres',
 				items: [{ text: 'Backup', link: '/postgres/backup' }],
 			},
